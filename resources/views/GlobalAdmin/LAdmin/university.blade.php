@@ -52,7 +52,9 @@
                                         <!-- table -->
                                         <div class="table-responsive">
                                             <table class="table datatables" id="dataTable-1">
-                                                <a style="color: black" href="{{route('gadmin.ladmin.add.university',$ladminID)}}" class="btn btn-primary">Add University</a>
+                                                <a style="color: black"
+                                                    href="{{ route('gadmin.ladmin.add.university', $ladminID) }}"
+                                                    class="btn btn-primary">Add University</a>
                                                 <br>
                                                 <br>
                                                 <thead>
@@ -78,66 +80,69 @@
                                                 <tbody>
 
                                                     @foreach ($universities as $university)
-                                                    <tr>
-                                                        <td>
-                                                            <div class="custom-control custom-checkbox">
-                                                                <input type="checkbox" class="custom-control-input">
-                                                                <label class="custom-control-label"></label>
-                                                            </div>
-                                                        </td>
-                                                        <td>{{ $university->id }}</td>
-                                                        <td>{{ $university->name }}</td>
-                                                        <td>{{ $university->phone }}</td>
-                                                        <td>
-                                                            @if ($university->status == 1)
-                                                                <span class="badge badge-success">Active</span>
-                                                            @elseif($university->status == 0)
-                                                                <span class="badge badge-danger">Not Active</span>
-                                                            @endif
+                                                        <tr>
+                                                            <td>
+                                                                <div class="custom-control custom-checkbox">
+                                                                    <input type="checkbox" class="custom-control-input">
+                                                                    <label class="custom-control-label"></label>
+                                                                </div>
+                                                            </td>
+                                                            <td>{{ $university->id }}</td>
+                                                            <td>{{ $university->name }}</td>
+                                                            <td>{{ $university->phone }}</td>
+                                                            <td>
+                                                                @if ($university->status == 1)
+                                                                    <span class="badge badge-success">Active</span>
+                                                                @elseif($university->status == 0)
+                                                                    <span class="badge badge-danger">Not Active</span>
+                                                                @endif
 
-                                                        </td>
-                                                
-                                                        <td>
-                                                            <img src="{{ asset('Image/' . $university->img) }}"
-                                                                style="width: 100px; height: 100px;">
-                                                        </td>
-                                                        <td>{{ $university->address->city }}</td>
-                                                        <td>{{ $university->address->region }}</td>
-                                                        <td>{{ $university->address->street }}</td>
-                                                        <td>{{ $university->address->near }}</td>
-                                                        <td>{{ $university->address->another_details }}</td>
-                                                        <td>
-                                                            @if ($university->catigory->type == 1)
-                                                                Private
-                                                            @elseif($university->catigory->type == 0)
-                                                                Public
-                                                            @elseif($university->catigory->type == 2)
-                                                                Virtual
-                                                            @endif
+                                                            </td>
 
-                                                        </td>
-                                                        <td>{{ $university->gadmin->name }}</td>
-                                                        <td>{{ $university->created_at }}</td>
-                                                        <td>{{ $university->updated_at }}</td>
-                                                        <td><button
-                                                                class="btn btn-sm dropdown-toggle more-horizontal"
-                                                                type="button" data-toggle="dropdown"
-                                                                aria-haspopup="true" aria-expanded="false">
-                                                                <span class="text-muted sr-only">Action</span>
-                                                            </button>
-                                                            <div class="dropdown-menu dropdown-menu-right">
-                                                                <a class="dropdown-item" href="{{route('gadmin.university.edit' , $university->id)}}">Edit</a>
-                                                                <form action="{{route('gadmin.university.soft.delete' , $university->id)}}" method="POST">
-                                                                    @csrf
-                                                                    @method('delete')
-                                                                    <button class="dropdown-item" type="submit">Remove</button>
-                                                                </form>
-                                                               
-                                                                <a class="dropdown-item" href="{{route('gadmin.university.edit.address' , $university->id)}}">Edit Address</a>
-                                                            </div>
-                                                        </td>
-                                                    </tr>
-                                                @endforeach
+                                                            <td>
+                                                                <img src="{{ asset('Image/' . $university->img) }}"
+                                                                    style="width: 100px; height: 100px;">
+                                                            </td>
+                                                            <td>{{ $university->address->city ?? '-' }}</td>
+                                                            <td>{{ $university->address->region ?? '-' }}</td>
+                                                            <td>{{ $university->address->street ?? '-' }}</td>
+                                                            <td>{{ $university->address->near ?? '-' }}</td>
+                                                            <td>{{ $university->address->another_details ?? '-' }}</td>
+                                                            <td>
+                                                                @if ($university->type == 1)
+                                                                    Private
+                                                                @elseif($university->type == 0)
+                                                                    Public
+                                                                @elseif($university->type == 2)
+                                                                    Virtual
+                                                                @endif
+
+                                                            </td>
+
+                                                            <td>{{ $university->gadmin->name }}</td>
+                                                            <td>{{ $university->created_at }}</td>
+                                                            <td>{{ $university->updated_at }}</td>
+                                                            <td><button
+                                                                    class="btn btn-sm dropdown-toggle more-horizontal"
+                                                                    type="button" data-toggle="dropdown"
+                                                                    aria-haspopup="true" aria-expanded="false">
+                                                                    <span class="text-muted sr-only">Action</span>
+                                                                </button>
+                                                                <div class="dropdown-menu dropdown-menu-right">
+
+                                                                    <form
+                                                                        action="{{ route('gadmin.ladmin.revoke.university', $university->id) }}"
+                                                                        method="POST">
+                                                                        @csrf
+                                                                        @method('delete')
+                                                                        <button class="dropdown-item"
+                                                                            type="submit">Revoke</button>
+                                                                    </form>
+
+                                                                </div>
+                                                            </td>
+                                                        </tr>
+                                                    @endforeach
 
                                                 </tbody>
                                             </table>

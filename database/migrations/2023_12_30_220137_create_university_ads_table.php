@@ -13,8 +13,14 @@ return new class extends Migration
     {
         Schema::create('university_ads', function (Blueprint $table) {
             $table->id();
+            $table->string('name');
+            $table->string('title');
+            $table->string('body');
+            $table->string('details');
+            $table->string('img')->nullable();
             $table->foreignId('universityID')->references('id')->on('universities');
-            $table->foreignId('adsID')->references('id')->on('ads');
+            $table->foreignId('created_by')->references('id')->on('l_admins');
+            $table->softDeletes();
             $table->timestamps();
         });
     }

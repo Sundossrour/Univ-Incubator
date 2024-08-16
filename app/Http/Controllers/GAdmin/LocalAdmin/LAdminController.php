@@ -155,6 +155,17 @@ class LAdminController extends Controller
         return redirect()->route('gadmin.ladmin.index')->with('success_message', 'Local Admin University Assign Successfully');
     }
 
+    public function revokeUniversity($id)
+    {
+        $universityID = $id;
+
+        $localAdminUniv = LAdminUniversity::where('universityId' , $universityID)->first();
+
+        $localAdminUniv->delete();
+
+        return redirect()->route('gadmin.ladmin.index')->with('success_message', 'University Revoked Successfully');
+    }
+
     //حذف مسؤول محلي ونقله للارشيف
 
     public function softDelete($id)

@@ -20,6 +20,7 @@ return new class extends Migration
             $table->string('another_details')->nullable();
             $table->double('longitude');
             $table->double('latitude');
+            $table->foreignId('created_by')->references('id')->on('l_admins');
             $table->softDeletes();
             $table->timestamps();
         });

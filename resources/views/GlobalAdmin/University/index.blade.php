@@ -99,17 +99,17 @@
                                                                 <img src="{{ asset('Image/' . $university->img) }}"
                                                                     style="width: 100px; height: 100px;">
                                                             </td>
-                                                            <td>{{ $university->address->city }}</td>
-                                                            <td>{{ $university->address->region }}</td>
-                                                            <td>{{ $university->address->street }}</td>
-                                                            <td>{{ $university->address->near }}</td>
-                                                            <td>{{ $university->address->another_details }}</td>
+                                                            <td>{{ $university->address->city ?? '-'}}</td>
+                                                            <td>{{ $university->address->region ?? '-' }}</td>
+                                                            <td>{{ $university->address->street ?? '-'}}</td>
+                                                            <td>{{ $university->address->near ?? '-' }}</td>
+                                                            <td>{{ $university->address->another_details ?? '-' }}</td>
                                                             <td>
-                                                                @if ($university->catigory->type == 1)
+                                                                @if ($university->type == 1)
                                                                     Private
-                                                                @elseif($university->catigory->type == 0)
+                                                                @elseif($university->type == 0)
                                                                     Public
-                                                                @elseif($university->catigory->type == 2)
+                                                                @elseif($university->type == 2)
                                                                     Virtual
                                                                 @endif
 
@@ -131,7 +131,7 @@
                                                                         <button class="dropdown-item" type="submit">Remove</button>
                                                                     </form>
                                                                    
-                                                                    <a class="dropdown-item" href="{{route('gadmin.university.edit.address' , $university->id)}}">Edit Address</a>
+                                                                    {{-- <a class="dropdown-item" href="{{route('gadmin.university.edit.address' , $university->id)}}">Edit Address</a> --}}
                                                                 </div>
                                                             </td>
                                                         </tr>

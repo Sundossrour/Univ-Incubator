@@ -13,8 +13,11 @@ return new class extends Migration
     {
         Schema::create('university_colleges', function (Blueprint $table) {
             $table->id();
+            $table->string('collegeName');
+            $table->string('collegeImage')->nullable();
+            $table->foreignId('created_by')->references('id')->on('l_admins');
             $table->foreignId('universityId')->references('id')->on('universities');
-            $table->foreignId('collegeId')->references('id')->on('colleges');
+            $table->softDeletes();
             $table->timestamps();
         });
     }

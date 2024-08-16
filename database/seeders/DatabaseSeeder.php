@@ -26,17 +26,19 @@ class DatabaseSeeder extends Seeder
         $this->call(GAdminSeeder::class);
         $this->call(LAdminSeeder::class);
         $this->call(AddressSeeder::class);
-        $this->call(CatigorySeeder::class);
         $this->call(UniversitySeeder::class);
         $this->call(LAdminUniversitySeeder::class);
-        $this->call(CollegeSeeder::class);
         $this->call(UniversityCollegeSeeder::class);
-        $this->call(SpecializationSeeder::class);
-        $this->call(UniversityCollegeSpecializationSeeder::class);
-        $this->call(AdsSeeder::class);
-        $this->call(UniversityAdsSeeder::class);
+        $this->call(CollegeEventSeeder::class);
         $this->call(TeachingStaffSeeder::class);
+        $this->call(UserSSeeder::class);
+        $this->call(QuestionUserSeeder::class);
+        $this->call(CollegeAdsSeeder::class);
+        $this->call(CollegeFeesSeeder::class);
+        $this->call(SpecializationCollegeSeeder::class);
+        $this->call(UniversityAdsSeeder::class);
         $this->call(EventSeeder::class);
-        $this->call(StudyFeesSeeder::class);
+        $this->call(UniversityEventSeeder::class);
+
     }
 }

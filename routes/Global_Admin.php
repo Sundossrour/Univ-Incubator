@@ -45,11 +45,11 @@ Route::middleware(['gadmin'])->name('gadmin.')->prefix('gadmin')->group(function
 
   Route::get('/university/edit/{id}', [UniversityController::class, 'edit'])->name('university.edit');
 
-  Route::get('/university/edit/address/{id}', [UniversityController::class, 'editAddress'])->name('university.edit.address');
+  // Route::get('/university/edit/address/{id}', [UniversityController::class, 'editAddress'])->name('university.edit.address');
 
   Route::put('/university/update/{id}', [UniversityController::class, 'update'])->name('university.update');
 
-  Route::put('/university/update/address/{id}', [UniversityController::class, 'updateAddress'])->name('university.update.address');
+  // Route::put('/university/update/address/{id}', [UniversityController::class, 'updateAddress'])->name('university.update.address');
 
   Route::get('/university/archive', [UniversityController::class, 'archive'])->name('university.archive');
 
@@ -82,6 +82,8 @@ Route::middleware(['gadmin'])->name('gadmin.')->prefix('gadmin')->group(function
 
   Route::post('/ladmin/store/university/{id}', [LAdminController::class, 'storeUniversity'])->name('ladmin.store.university');
 
+  Route::delete('/ladmin/revoke/university/{id}', [LAdminController::class, 'revokeUniversity'])->name('ladmin.revoke.university');
+
   Route::delete('/ladmin/softDelete/{id}', [LAdminController::class, 'softDelete'])->name('ladmin.soft.delete');
 
   Route::get('/ladmin/restore/{id}', [LAdminController::class, 'restore'])->name('ladmin.restore');
@@ -104,7 +106,7 @@ Route::middleware(['gadmin'])->name('gadmin.')->prefix('gadmin')->group(function
   Route::get('/roles/givepermission/{role}', [RoleController::class, 'go_to_give_permissions'])->name('go.roles.permissions');
 
   Route::post('/roles/{role}/permissions', [RoleController::class, 'givepermission'])->name('roles.permissions');
-  
+
   Route::delete('/roles/{role}/permissions/{permission}', [RoleController::class, 'revokepermission'])->name('roles.permissions.revoke');
 
   Route::resource('/roles', RoleController::class);

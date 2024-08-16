@@ -115,7 +115,7 @@
 
                                                             <td>{{ $teachingStaff->univCollege->university->name }}</td>
 
-                                                            <td>{{ $teachingStaff->univCollege->college->name }}</td>
+                                                            <td>{{ $teachingStaff->univCollege->collegeName }}</td>
 
                                                             <td>
                                                                 <img src="{{ asset('Image/' . $teachingStaff->img) }}"

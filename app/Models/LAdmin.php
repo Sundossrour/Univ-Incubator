@@ -47,12 +47,12 @@ class LAdmin extends Authenticatable
         return $this->hasMany(LAdminUniversity::class,'ladminID');
     }
 
-       //علاقة المسؤول المحلي مع الاعلانات
+    //    //علاقة المسؤول المحلي مع الاعلانات
 
-       public function ads()
-       {
-           return $this->hasMany(Ads::class,'created_by');
-       }
+    //    public function ads()
+    //    {
+    //        return $this->hasMany(Ads::class,'created_by');
+    //    }
 
 
         //علاقة المسؤول المحلي مع الكادر التدريسي

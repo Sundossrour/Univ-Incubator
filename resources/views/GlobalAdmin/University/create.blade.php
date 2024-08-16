@@ -47,36 +47,6 @@
                                 </div>
                             </div>
 
-                            <div class="form-row">
-
-                                <div class="form-group col-md-3">
-                                    <label for="inputCity">City</label>
-                                    <input type="text" class="form-control" id="inputCity" name="city" required>
-                                </div>
-
-                                <div class="form-group col-md-3">
-                                    <label for="inputCity">Region</label>
-                                    <input type="text" class="form-control" id="inputCity" name="region" required>
-                                </div>
-
-                                <div class="form-group col-md-3">
-                                    <label for="inputCity">Street</label>
-                                    <input type="text" class="form-control" id="inputCity" name="street" required>
-                                </div>
-
-                                <div class="form-group col-md-3">
-                                    <label for="inputCity">Near</label>
-                                    <input type="text" class="form-control" id="inputCity" name="near" required>
-                                </div>
-
-                            </div>
-
-                            <div class="form-row">
-                                <div class="form-group col-md-12">
-                                    <label for="inputCity">Details Address(Optional)</label>
-                                    <input type="text" class="form-control" id="inputCity" name="details">
-                                </div>
-                            </div>
 
                             <div class="form-row">
                                 <div class="form-group col-md-6">
@@ -96,35 +66,25 @@
                                     </select>
                                 </div>
                                 <div class="form-group col-md-4">
-                                    <label for="inputState">Catigory</label>
-                                    <select id="inputState" class="form-control" name="catigoryID">
+                                    <label for="inputState">Type</label>
+                                    <select id="inputState" class="form-control" name="type">
                                         <option selected>Choose...</option>
-                                        @foreach ($catigories as $catigory)
-                                            <option value="{{ $catigory->id }}">
-                                                @if ($catigory->type == 0)
-                                                    <span>Public</span>
-                                                @elseif($catigory->type == 1)
-                                                    <span>Private</span>
-                                                @elseif($catigory->type == 2)
-                                                    <span>Virtual</span>
-                                                @endif
-                                            </option>
-                                        @endforeach
+                                        <option value="0">
+                                            <span>Public</span>
+                                        </option>
+                                        <option value="1">
+                                            <span>Private</span>
+                                        </option>
+                                        <option value="2">
+                                            <span>Virtual</span>
+                                        </option>
+
 
                                     </select>
                                 </div>
-                                <input type="hidden" id="latitude" name="latitude">
-                                <br>
-                                <input type="hidden" id="longitude" name="longitude">
-                                <div id="map" style="height: 500px; width: 1000px;">
-                                </div>
+                             
                             </div>
-                            <div class="form-group">
-                                <div class="form-check">
-                                    <input class="form-check-input" type="checkbox" id="gridCheck">
-                                    <label class="form-check-label" for="gridCheck"> Check me out </label>
-                                </div>
-                            </div>
+
                             <button type="submit" class="btn btn-primary">Submit</button>
                         </form>
                     </div>
@@ -137,58 +97,7 @@
 
     @include('layouts.GlobalAdmin.LinkJS')
 
-    <script>
-        var map, marker;
-
-        function initMap() {
-            // The location of the user
-            var myLatLng = {
-                lat: -34.397,
-                lng: 150.644
-            }; // default location
-
-            // Try HTML5 geolocation.
-            if (navigator.geolocation) {
-                navigator.geolocation.getCurrentPosition(function(position) {
-                    myLatLng = {
-                        lat: position.coords.latitude,
-                        lng: position.coords.longitude
-                    };
-
-                    map = new google.maps.Map(document.getElementById('map'), {
-                        zoom: 15,
-                        center: myLatLng
-                    });
-
-                    marker = new google.maps.Marker({
-                        position: myLatLng,
-                        map: map,
-                        draggable: true,
-                        title: 'Drag me!'
-                    });
-
-                    // Set default values for latitude and longitude
-                    document.getElementById('latitude').value = myLatLng.lat;
-                    document.getElementById('longitude').value = myLatLng.lng;
-
-                    // Add event listener to marker for position update
-                    google.maps.event.addListener(marker, 'dragend', function(event) {
-                        document.getElementById('latitude').value = this.getPosition().lat();
-                        document.getElementById('longitude').value = this.getPosition().lng();
-                    });
-
-                }, function() {
-                    handleLocationError(true, infoWindow, map.getCenter());
-                });
-            } else {
-                // Browser doesn't support Geolocation
-                handleLocationError(false, infoWindow, map.getCenter());
-            }
-        }
-    </script>
-
-    <script async defer
-        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBddryhfLC4gYIvreVc9YDY4gLv2BrhhmY&callback=initMap"></script>
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBddryhfLC4gYIvreVc9YDY4gLv2BrhhmY&callback=initMap"></script>
 </body>
 
 </html>

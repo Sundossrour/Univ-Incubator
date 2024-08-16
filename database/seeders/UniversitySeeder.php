@@ -18,8 +18,19 @@ class UniversitySeeder extends Seeder
             'phone' => '098723498223',
             'status' => '1',
             'img' => 'img1.png',
+            'type'=> '1',
             'address_id' => '1',
-            'catigory_id' => '1',
+            'created_by' => '1',
+        ]);
+
+
+        University::create([
+            'name' => 'Arab International University',
+            'phone' => '0987654321',
+            'status' => '1',
+            'img' => 'img2.png',
+            'type'=> '1',
+            'address_id' => '2',
             'created_by' => '1',
         ]);
     }

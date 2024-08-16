@@ -17,7 +17,9 @@ class TeachingStaffController extends Controller
 
     public function index()
     {
-        $teachingStaffs = TeachingStaff::all();
+        $lAdminUniversityIDs = LAdminUniversity::where('ladminID' , Auth::guard('ladmin')->user()->id)->pluck('universityId');
+        $universityCollegeIDs = UniversityCollege::whereIn('universityId' , $lAdminUniversityIDs)->pluck('id');
+        $teachingStaffs = TeachingStaff::whereIn('univercityCollegeID' , $universityCollegeIDs)->get();
         return view('LocalAdmin.TeachingStaff.index', compact('teachingStaffs'));
     }
 
@@ -124,7 +126,9 @@ class TeachingStaffController extends Controller
 
     public function archive()
     {
-        $teachingStaffs = TeachingStaff::onlyTrashed()->get();
+        $lAdminUniversityIDs = LAdminUniversity::where('ladminID' , Auth::guard('ladmin')->user()->id)->pluck('universityId');
+        $universityCollegeIDs = UniversityCollege::whereIn('universityId' , $lAdminUniversityIDs)->pluck('id');
+        $teachingStaffs = TeachingStaff::whereIn('univercityCollegeID' , $universityCollegeIDs)->onlyTrashed()->get();
         return view('LocalAdmin.TeachingStaff.archive', compact('teachingStaffs'));
     }
 

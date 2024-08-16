@@ -19,9 +19,7 @@ return new class extends Migration
             $table->string('eventTime');
             $table->string('details');
             $table->tinyInteger('status');
-            $table->foreignId('univercityCollegeID')->references('id')->on('university_colleges');
             $table->foreignId('created_by')->references('id')->on('l_admins');
-            $table->softDeletes();
             $table->timestamps();
         });
     }

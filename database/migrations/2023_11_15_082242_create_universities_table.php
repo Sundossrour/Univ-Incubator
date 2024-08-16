@@ -16,9 +16,9 @@ return new class extends Migration
             $table->string('name')->unique();
             $table->string('phone');
             $table->tinyInteger('status');
-            $table->string('img');
-            $table->foreignId('address_id')->references('id')->on('addresses');
-            $table->foreignId('catigory_id')->references('id')->on('catigories');
+            $table->tinyInteger('type');
+            $table->string('img')->nullable();
+            $table->foreignId('address_id')->nullable()->references('id')->on('addresses')->cascadeOnDelete();
             $table->foreignId('created_by')->references('id')->on('g_admins');
             $table->softDeletes();
             $table->timestamps();

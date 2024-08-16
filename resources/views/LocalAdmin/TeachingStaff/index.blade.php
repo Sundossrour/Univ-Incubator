@@ -46,13 +46,13 @@
                                 @endif
 
                                 @if (session('error_message'))
-                                <div class="alert alert-danger">
-                                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                                        <span aria-hidden="true">&times;</span>
-                                    </button>
-                                    {{ session('error_message') }}
-                                </div>
-                            @endif
+                                    <div class="alert alert-danger">
+                                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                        {{ session('error_message') }}
+                                    </div>
+                                @endif
 
                                 {{-- end  message Section --}}
 
@@ -96,10 +96,10 @@
                                                             <td>{{ $teachingStaff->email }}</td>
                                                             <td>{{ $teachingStaff->age }}</td>
                                                             <td>
-                                                                @if($teachingStaff->gender == 1)
-                                                                Male
+                                                                @if ($teachingStaff->gender == 1)
+                                                                    Male
                                                                 @else
-                                                                Female
+                                                                    Female
                                                                 @endif
                                                             </td>
                                                             <td>
@@ -114,7 +114,7 @@
 
                                                             <td>{{ $teachingStaff->univCollege->university->name }}</td>
 
-                                                            <td>{{ $teachingStaff->univCollege->college->name }}</td>
+                                                            <td>{{ $teachingStaff->univCollege->collegeName }}</td>
 
                                                             <td>
                                                                 <img src="{{ asset('Image/' . $teachingStaff->img) }}"
@@ -141,7 +141,7 @@
                                                                         <button class="dropdown-item"
                                                                             type="submit">Delete</button>
                                                                     </form>
-                                             
+
                                                                 </div>
                                                             </td>
                                                         </tr>

@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Event extends Model
 {
-    use HasFactory , SoftDeletes;
+    use HasFactory ;
 
     protected $fillable = [
         'name',
@@ -34,5 +34,10 @@ class Event extends Model
     public function univCollege()
     {
         return $this->belongsTo(UniversityCollege::class, 'univercityCollegeID');
+    }
+
+    public function university()
+    {
+        return $this->hasMany(UnivEvent::class, 'eventID');
     }
 }

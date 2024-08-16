@@ -17,5 +17,10 @@ class LAdminUniversitySeeder extends Seeder
             'universityId' => '1',
             'ladminID' => '1',
         ]);
+
+        LAdminUniversity::create([
+            'universityId' => '2',
+            'ladminID' => '1',
+        ]);
     }
 }

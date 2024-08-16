@@ -4,51 +4,29 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class UniversityCollege extends Model
 {
-    use HasFactory;
+    use HasFactory , SoftDeletes;
 
     protected $fillable = [
+        'collegeName',
+        'collegeImage',
+        'created_by',
         'universityId',
-        'collegeId',
     ];
 
-    public function college()
-    {
-        return $this->belongsTo(College::class, 'collegeId');
-    }
 
     public function university()
     {
         return $this->belongsTo(University::class, 'universityId');
     }
 
-    //علاقة كليات الجامعة مع الاختصاصات
 
-     public function specializationUnivCollege()
-      {
-             return $this->hasMany(univercityCollegeSpecialization::class,'univercityCollegeID');
-     }
+    public function LAdmin()
+    {
+        return $this->belongsTo(LAdmin::class, 'created_by');
+    }
 
-        //علاقة كليات الجامعة مع الكادر التدريسي
-
-        public function teachingStaff()
-        {
-               return $this->hasMany(TeachingStaff::class,'univercityCollegeID');
-       }
-
-          //علاقة كليات الجامعة مع الفعاليات
-
-          public function event()
-          {
-                 return $this->hasMany(Event::class,'univercityCollegeID');
-         }
-
-            //علاقة كليات الجامعة مع الرسوم الدراسية
-
-            public function studyFees()
-            {
-                   return $this->hasMany(studyFees::class,'univercityCollegeID');
-           }
 }

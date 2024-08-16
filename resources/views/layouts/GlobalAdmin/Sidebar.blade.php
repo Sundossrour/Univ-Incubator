@@ -96,7 +96,7 @@
         </ul>
 
       <!-- College Management -->
-<ul class="navbar-nav flex-fill w-100 mb-2">
+{{-- <ul class="navbar-nav flex-fill w-100 mb-2">
     <li class="nav-item dropdown">
         <a href="#college-elements" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle nav-link">
             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-mortarboard" viewBox="0 0 16 16">
@@ -140,7 +140,7 @@
             </li>
         </ul>
     </li>
-</ul>
+</ul> --}}
 
         <p class="text-muted nav-heading mt-4 mb-1">
             <span>Authorization</span>

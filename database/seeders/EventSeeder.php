@@ -13,14 +13,15 @@ class EventSeeder extends Seeder
      */
     public function run(): void
     {
+        //
+
         Event::create([
-            'name' => 'event1',
-            'dayName' => 'day1',
-            'eventDate' => '2024-01-18',
-            'eventTime' => '01:01',
-            'details' => 'No Details',
+            'name' => 'Event1',
+            'dayName' => 'Sunday',
+            'eventDate' => '1/1/2000',
+            'eventTime' => '01:00',
+            'details' => 'no Details',
             'status' => '0',
-            'univercityCollegeID' => '1',
             'created_by' => '1',
         ]);
     }

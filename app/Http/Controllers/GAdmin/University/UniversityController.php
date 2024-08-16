@@ -24,8 +24,7 @@ class UniversityController extends Controller
 
     public function create()
     {
-        $catigories = Catigory::all();
-        return view('GlobalAdmin.University.create', compact('catigories'));
+        return view('GlobalAdmin.University.create');
     }
 
     //تخزين بيانات الجامعة في قاعدة البيانات 
@@ -35,22 +34,11 @@ class UniversityController extends Controller
         $image = $request->file('img')->getClientOriginalName();
         $path = $request->file('img')->storeAs('UniversityImage', $image, 'Image');
 
-        $address = Address::create([
-            'city' => $request->input('city'),
-            'region' => $request->input('region'),
-            'street' => $request->input('street'),
-            'near' => $request->input('near'),
-            'another_details' => $request->input('details'),
-            'longitude' => $request->input('longitude'),
-            'latitude' => $request->input('latitude'),
-        ]);
-
         University::create([
             'name' => $request->input('name'),
             'phone' => $request->input('phone'),
             'status' => $request->input('status'),
-            'address_id' => $address->id,
-            'catigory_id' => $request->input('catigoryID'),
+            'type' => $request->input('type'),
             'created_by' => Auth::guard('gadmin')->user()->id,
             'img' => $path,
         ]);
@@ -63,37 +51,8 @@ class UniversityController extends Controller
     public function edit(Request $request, $id)
     {
         $university = University::findOrfail($id);
-        $catigories = Catigory::all();
-        return view('GlobalAdmin.University.edit', compact('university', 'catigories'));
+        return view('GlobalAdmin.University.edit', compact('university'));
     }
-
-    //عرض صفحة تعديل موقع الجامعة 
-
-    public function editAddress($id)
-    {
-        $university = University::findOrfail($id);
-        return view('GlobalAdmin.University.editAddress', compact('university'));
-    }
-
-    //تحديث بيانات الموقع الخاص بالجامعة
-
-    public function updateAddress(Request $request, $id)
-    {
-        $university = University::findOrfail($id);
-        $address = Address::where('id', $university->address_id);
-        $address->update([
-            'city' => $request->input('city'),
-            'region' => $request->input('region'),
-            'street' => $request->input('street'),
-            'near' => $request->input('near'),
-            'another_details' => $request->input('details'),
-            'longitude' => $request->input('longitude'),
-            'latitude' => $request->input('latitude'),
-        ]);
-        return redirect()->route('gadmin.university.index')->with('success_message', 'University Address Updated Successfully');
-    }
-
-    //تحديث بيانات الجامعة
 
     public function update(Request $request, $id)
     {
@@ -102,7 +61,7 @@ class UniversityController extends Controller
         if ($request->file('img') == null) {
             $university->update([
                 'name' => $request->input('name'),
-                'catigory' => $request->input('catigory'),
+                'type' => $request->input('type'),
                 'status' => $request->input('status'),
                 'phone' => $request->input('phone'),
             ]);
@@ -116,7 +75,7 @@ class UniversityController extends Controller
 
                 $university->update([
                     'name' => $request->input('name'),
-                    'catigory' => $request->input('catigory'),
+                    'type' => $request->input('type'),
                     'status' => $request->input('status'),
                     'phone' => $request->input('phone'),
                     'img' => $path,
@@ -130,7 +89,7 @@ class UniversityController extends Controller
 
                 $university->update([
                     'name' => $request->input('name'),
-                    'catigory' => $request->input('catigory'),
+                    'type' => $request->input('type'),
                     'status' => $request->input('status'),
                     'phone' => $request->input('phone'),
                     'img' => $path,

@@ -71,21 +71,19 @@
 
                                 </div>
                                 <div class="form-group col-md-4">
-                                    <label for="inputState">Catigory</label>
-                                    <select id="inputState" class="form-control" name="catigoryID">
-                                        <option>Choose...</option>
-                                        @foreach ($catigories as $catigory)
-                                            <option value="{{ $catigory->id }}"
-                                                {{ $university->catigory_id == $catigory->id ? 'selected' : '' }}>
-                                                @if ($catigory->type == 0)
-                                                    <span>Public</span>
-                                                @elseif($catigory->type == 1)
-                                                    <span>Private</span>
-                                                @elseif($catigory->type == 2)
-                                                    <span>Virtual</span>
-                                                @endif
-                                            </option>
-                                        @endforeach
+                                    <label for="inputState">Type</label>
+                                    <select id="inputState" class="form-control" name="type">
+                                        <option selected>Choose...</option>
+                                        <option value="0" {{ $university->type == 0 ? 'selected' : '' }}>
+                                            <span>Public</span>
+                                        </option>
+                                        <option value="1" {{ $university->type == 1 ? 'selected' : '' }}>
+                                            <span>Private</span>
+                                        </option>
+                                        <option value="2" {{ $university->type == 2 ? 'selected' : '' }}>
+                                            <span>Virtual</span>
+                                        </option>
+
 
                                     </select>
                                 </div>

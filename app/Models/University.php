@@ -15,6 +15,7 @@ class University extends Model
         'phone',
         'status',
         'img',
+        'type',
         'address_id',
         'catigory_id',
         'created_by'
@@ -35,11 +36,10 @@ class University extends Model
         return $this->belongsTo(Address::class, 'address_id');
     }
 
-    //علاقة الجامعة مع الفئات
 
-    public function catigory()
+    public function event()
     {
-        return $this->belongsTo(Catigory::class, 'catigory_id');
+        return $this->hasMany(UnivEvent::class, 'universityID');
     }
 
 
@@ -57,10 +57,4 @@ class University extends Model
         return $this->hasMany(UniversityCollege::class, 'universityId');
     }
 
-     //علاقة الجامعات مع الاعلانات
-
-     public function univAds()
-     {
-         return $this->hasMany(UniversityCollegeAds::class, 'universityId');
-     }
 }

@@ -15,13 +15,15 @@ class UniversityCollegeSeeder extends Seeder
     {
         
         UniversityCollege::create([
-            'universityId' => '1',
-            'collegeId' => '1',
+            'collegeName' => 'Information Engineering',
+            'created_by' => '1',
+            'universityId' => '1'
         ]);
 
         UniversityCollege::create([
-            'universityId' => '1',
-            'collegeId' => '2',
+            'collegeName' => 'Business Management',
+            'created_by' => '1',
+            'universityId' => '1'
         ]);
     }
 }

@@ -18,6 +18,7 @@ class Address extends Model
         'another_details',
         'longitude',
         'latitude',
+        'created_by',
     ];
 
      //علاقة المكان مع الجامعات

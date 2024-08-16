@@ -4,42 +4,32 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class UniversityAds extends Model
 {
-    use HasFactory;
+    use HasFactory , SoftDeletes;
 
     protected $fillable = [
+        'name',
+        'title',
+        'body',
+        'details',
+        'img',
         'universityID',
-        'collegeID',
-        'adsID',
+        'created_by',
     ];
 
-    // //علاقة الكليات مع الاعلانات
-
-    // public function collegeAds()
-    // {
-    //     return $this->belongsTo(College::class, 'collegeId');
-    // }
-
-    //علاقة الاعلانات مع الجامعات والكليات
-
-    public function adsUniv()
+    public function LAdmin()
     {
-        return $this->belongsTo(Ads::class, 'adsID');
+        return $this->belongsTo(LAdmin::class, 'created_by');
     }
 
     //علاقة الجامعات مع الاعلانات
 
-    public function univAds()
+    public function university()
     {
-        return $this->belongsTo(University::class, 'universityId');
+        return $this->belongsTo(University::class, 'universityID');
     }
 
-      //علاقة اعلانات الجامعة مع الكليات
-
-      public function univCollegeAds()
-      {
-          return $this->hasMany(universityAdsCollege::class, 'universityAdsID');
-      }
 }

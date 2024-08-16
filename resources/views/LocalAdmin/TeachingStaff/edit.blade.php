@@ -93,7 +93,7 @@
                                     <select id="inputState" class="form-control" name="univercityCollegeID">
                                         <option selected>Choose...</option>
                                         @foreach ($universityColleges as $universityCollege)
-                                        <option value="{{$universityCollege->id}}" {{ $teachingStaff->univercityCollegeID == $universityCollege->id ? 'selected' : '' }}>{{$universityCollege->university->name}} / {{$universityCollege->college->name}}</option>
+                                        <option value="{{$universityCollege->id}}" {{ $teachingStaff->univercityCollegeID == $universityCollege->id ? 'selected' : '' }}>{{$universityCollege->university->name}} / {{$universityCollege->collegeName}}</option>
                                         @endforeach
                     
                                     </select>

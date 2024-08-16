@@ -34,18 +34,19 @@
                             <!-- Small table -->
                             <div class="col-md-12">
 
-                                {{-- message Section --}}
+                                   {{-- message Section --}}
 
-                                @if (session('success_message'))
-                                    <div class="alert alert-success">
-                                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                                            <span aria-hidden="true">&times;</span>
-                                        </button>
-                                        {{ session('success_message') }}
-                                    </div>
-                                @endif
+                                   @if (session('success_message'))
+                                   <div class="alert alert-success">
+                                       <button type="button" class="close" data-dismiss="alert"
+                                           aria-label="Close">
+                                           <span aria-hidden="true">&times;</span>
+                                       </button>
+                                       {{ session('success_message') }}
+                                   </div>
+                               @endif
 
-                                {{-- end  message Section --}}
+                               {{-- end  message Section --}}
 
                                 <div class="card shadow">
                                     <div class="card-body">
@@ -94,22 +95,22 @@
                                                                 @endif
 
                                                             </td>
-
+                                                    
                                                             <td>
                                                                 <img src="{{ asset('Image/' . $university->img) }}"
                                                                     style="width: 100px; height: 100px;">
                                                             </td>
-                                                            <td>{{ $university->address->city }}</td>
-                                                            <td>{{ $university->address->region }}</td>
-                                                            <td>{{ $university->address->street }}</td>
-                                                            <td>{{ $university->address->near }}</td>
-                                                            <td>{{ $university->address->another_details }}</td>
+                                                            <td>{{ $university->address->city ?? '-'}}</td>
+                                                            <td>{{ $university->address->region ?? '-' }}</td>
+                                                            <td>{{ $university->address->street ?? '-'}}</td>
+                                                            <td>{{ $university->address->near ?? '-' }}</td>
+                                                            <td>{{ $university->address->another_details ?? '-' }}</td>
                                                             <td>
-                                                                @if ($university->catigory->type == 1)
+                                                                @if ($university->type == 1)
                                                                     Private
-                                                                @elseif($university->catigory->type == 0)
+                                                                @elseif($university->type == 0)
                                                                     Public
-                                                                @elseif($university->catigory->type == 2)
+                                                                @elseif($university->type == 2)
                                                                     Virtual
                                                                 @endif
 
@@ -125,20 +126,14 @@
                                                                     <span class="text-muted sr-only">Action</span>
                                                                 </button>
                                                                 <div class="dropdown-menu dropdown-menu-right">
+                                                                    <a class="dropdown-item" href="{{route('gadmin.university.restore' , $university->id)}}">Restore</a>
 
-                                                                    <a type="submit" class="dropdown-item"
-                                                                        href="{{ route('gadmin.university.restore', $university->id) }}">Restore</a>
-
-                                                                    <form
-                                                                        action="{{ route('gadmin.university.force.delete', $university->id) }}"
-                                                                        method="POST">
+                                                                    <form action="{{route('gadmin.university.force.delete' , $university->id)}}" method="POST">
                                                                         @csrf
                                                                         @method('delete')
-                                                                        <button class="dropdown-item"
-                                                                            type="submit">Delete</button>
+                                                                        <button class="dropdown-item" type="submit">Force Delete</button>
                                                                     </form>
-
-
+                                                                   
                                                                 </div>
                                                             </td>
                                                         </tr>

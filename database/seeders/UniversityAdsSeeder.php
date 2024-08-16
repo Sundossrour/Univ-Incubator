@@ -16,8 +16,13 @@ class UniversityAdsSeeder extends Seeder
     {
 
         UniversityAds::create([
-            'universityID' => '1',
-            'adsID' => '1',
+            'name' => 'ads1',
+            'title' => 'tit1',
+            'body' => 'bod1',
+            'details' => 'det1',
+            'img' => 'img1',
+            'universityID'=>'1',
+            'created_by' => '1',
         ]);
     }
 }

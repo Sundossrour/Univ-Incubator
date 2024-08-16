@@ -46,19 +46,6 @@ class GAdmin extends Authenticatable
         return $this->hasMany(LAdmin::class, 'created_by');
     }
 
-    //علاقة الادمن مع الاختصاصات
-
-    public function specialization()
-    {
-        return $this->hasMany(Specialization::class, 'created_by');
-    }
-
-    //علاقة الادمن مع الكليات
-
-    public function college()
-    {
-        return $this->hasMany(College::class, 'created_by');
-    }
 
     /**
      * The attributes that should be hidden for serialization.
